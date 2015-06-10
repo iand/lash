@@ -12,24 +12,30 @@ dozens of potential corner cases around its I/O that need to be figured out.
 ## Usage
 
 ```Go
+package main
+
 import (
-    "log"
     "github.com/iand/lash"
+    "log"
 )
 
 func main() {
     table, err := lash.New("data.db", 50)
-    err = table.Put("key1", []byte("value"))
     if err != nil {
         log.Fatal(err.Error())
     }
     defer table.Close()
 
+    err = table.Put("key1", []byte("value"))
+    if err != nil {
+        log.Fatal(err.Error())
+    }
+
     v, found := table.Get("key1")
     if !found {
         log.Fatal("did not find key")
     }
-    log.Printf("%s", value)   
+    log.Printf("%s", v)
 }
 ```
 
