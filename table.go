@@ -68,7 +68,7 @@ func (t *Table) write(k string, p item) (int64, error) {
 		return 0, errors.New("database not open")
 	}
 
-	// TODO: sanitize k for tabs
+	// TODO: sanitize k for separators
 	buf := &bytes.Buffer{}
 	buf.Write([]byte(k))
 	buf.WriteByte(sep)
@@ -126,7 +126,19 @@ func (t *Table) read() error {
 		return nil
 	}
 
-	err := os.Rename(t.filename, t.filename+".swp")
+	_, err := os.Stat(t.filename)
+	if err != nil {
+		if os.IsNotExist(err) {
+			t.dbfile, err = os.OpenFile(t.filename, os.O_RDWR|os.O_CREATE|os.O_EXCL, os.FileMode(0666))
+			if err != nil {
+				return err
+			}
+			return nil
+		}
+		return err
+	}
+
+	err = os.Rename(t.filename, t.filename+".swp")
 	if err != nil {
 		return err
 	}
