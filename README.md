@@ -36,7 +36,7 @@ func main() {
         log.Fatal("did not find key")
     }
     log.Printf("%s", v)
-}
+}   
 ```
 
 ## Installation
