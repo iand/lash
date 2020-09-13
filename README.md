@@ -2,6 +2,8 @@
 
 Go package providing a persistent, concurrent, memory-resident key/value hashtable.
 
+[![Build Status](https://travis-ci.org/iand/lash.svg?branch=master)](https://travis-ci.org/iand/lash)
+
 ## Overview
 
 Lash provides Table, a persistent, concurrent, memory-resident key/value hashtable. It is designed to persist its state on disk and recover it in the event of a crash or restart. It uses a log-based approach to data storage. Each key and value are appended to the underlying data file before being inserted into the memory hashtable. Data to be deleted from the table is marked with a tombstone in the data file. Tombstones are evicted when restoring the table from the data file during initialisation. This simple log-based approach performs well but will lead to very large data files for long-lived tables with high volumes of writes. Currently the only method of compacting the data file is to close the table and instantiate a new one pointing at the same file. 
