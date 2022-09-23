@@ -6,13 +6,12 @@
 package lash
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 )
 
 func makeTable(n int) (*Table, *os.File, error) {
-	tf, err := ioutil.TempFile("", "lash")
+	tf, err := os.CreateTemp("", "lash")
 	if err != nil {
 		return nil, nil, err
 	}
