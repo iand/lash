@@ -2,7 +2,10 @@
 
 Go package providing a persistent, concurrent, memory-resident key/value hashtable.
 
-[![Build Status](https://travis-ci.org/iand/lash.svg?branch=master)](https://travis-ci.org/iand/lash)
+[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white)](https://pkg.go.dev/github.com/iand/lash)
+[![Check Status](https://github.com/iand/lash/actions/workflows/check.yml/badge.svg)](https://github.com/iand/lash/actions/workflows/check.yml)
+[![Test Status](https://github.com/iand/lash/actions/workflows/test.yml/badge.svg)](https://github.com/iand/lash/actions/workflows/test.yml)
+
 
 ## Overview
 
